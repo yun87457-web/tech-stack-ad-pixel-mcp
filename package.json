@@ -1,6 +1,6 @@
 {
   "name": "stackscope-tech-stack-ad-pixel-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Installable MCP server for website tech stack, consent-gated GTM ad pixels (Meta, Google Ads, TikTok, LinkedIn), /ads.txt, and 70+ DNS-verified B2B SaaS detection.",
   "type": "module",
   "license": "MIT",

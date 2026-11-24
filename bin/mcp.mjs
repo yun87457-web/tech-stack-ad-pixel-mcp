@@ -12,42 +12,144 @@
 import readline from "node:readline";
 
 const SERVER_NAME = "stackscope-tech-stack-ad-pixel-mcp";
-const SERVER_VERSION = "1.1.0";
-const APIFY_MCP_URL = "https://spiky-closet--tech-stack-ad-pixel-detector.apify.actor/mcp";
+const SERVER_VERSION = "1.1.1";
+const APIFY_MCP_URL = process.env.MCP_ENDPOINT_OVERRIDE || "https://spiky-closet--tech-stack-ad-pixel-detector.apify.actor/mcp";
 const APIFY_URL = "https://apify.com/spiky_closet/tech-stack-ad-pixel-detector";
 const RAPIDAPI_URL = "https://rapidapi.com/HYunLe/api/website-tech-stack-ad-pixels-and-saas-detector";
 const RAPIDAPI_HOST = "website-tech-stack-ad-pixels-and-saas-detector.p.rapidapi.com";
+const REST_BASE_URL = process.env.REST_BASE_OVERRIDE || `https://${RAPIDAPI_HOST}`;
 const TOOLS = [
   {
-    "name": "scan_domains",
-    "description": "Detect 180+ technologies, consent-gated GTM ad pixels (Meta, Google Ads, LinkedIn, TikTok), /ads.txt, and 70+ DNS-verified B2B SaaS tools.",
+    "description": "Scan 1-200 company domains, URLs, or emails for 150+ website technologies, unpacked Google Tag Manager (GTM) paid ad pixel IDs (Google Ads AW-, Meta, LinkedIn, TikTok, Bing, GA4), and DNS MX/SPF/TXT/DMARC enterprise SaaS tools (resilient even on WAF HTTP 403 sites). Supports lead qualification filters (mustHaveAny, mustHaveAll, mustNotHave, onlyWithAdPixels).",
     "inputSchema": {
-      "type": "object",
       "properties": {
+        "checkAdsTxt": {
+          "default": false,
+          "description": "Also inspect /ads.txt publisher lines.",
+          "type": "boolean"
+        },
+        "checkDns": {
+          "default": true,
+          "description": "Run DNS MX/SPF/TXT/DMARC lookups for internal enterprise SaaS.",
+          "type": "boolean"
+        },
+        "domain": {
+          "description": "Single domain convenience field.",
+          "type": "string"
+        },
         "domains": {
-          "type": "array",
+          "description": "Domains, full URLs, or emails to inspect (e.g. ['hubspot.com', 'ceo@klaviyo.com']).",
           "items": {
             "type": "string"
           },
-          "description": "List of domains or URLs to inspect"
+          "type": "array"
+        },
+        "mustHaveAll": {
+          "description": "Return only domains matching ALL of these technologies/SaaS.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mustHaveAny": {
+          "description": "Return only domains matching ANY of these technologies/SaaS.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mustNotHave": {
+          "description": "Exclude domains using ANY of these technologies/SaaS.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "onlyWithAdPixels": {
+          "description": "Return only domains running paid ad pixels.",
+          "type": "boolean"
         },
         "unpackGtm": {
-          "type": "boolean",
-          "default": true
-        },
-        "checkDns": {
-          "type": "boolean",
-          "default": true
-        },
-        "checkAdsTxt": {
-          "type": "boolean",
-          "default": false
+          "default": true,
+          "description": "Fetch and unpack static GTM containers (gtm.js) for hidden ad pixel IDs.",
+          "type": "boolean"
         }
       },
-      "required": [
-        "domains"
-      ]
+      "type": "object"
     },
+    "name": "scan_domains",
+    "rapidapi": {
+      "method": "POST",
+      "path": "/scan"
+    }
+  },
+  {
+    "description": "Extract paid advertising pixels and tracking IDs from company domains by scanning homepage scripts and unpacking static Google Tag Manager (gtm.js) containers without a headless browser: returns Google Ads AW- IDs, Meta Pixel IDs, LinkedIn Partner IDs, TikTok Pixel IDs, Bing UET IDs, GA4 G- IDs, HubSpot Portal IDs, and a direct Google Ads Transparency Center link.",
+    "inputSchema": {
+      "properties": {
+        "checkAdsTxt": {
+          "default": false,
+          "description": "Also fetch /ads.txt publisher lines.",
+          "type": "boolean"
+        },
+        "domain": {
+          "description": "Single domain convenience field (e.g. 'hubspot.com').",
+          "type": "string"
+        },
+        "domains": {
+          "description": "List of company domains, URLs, or work emails (1-200).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "onlyWithAdPixels": {
+          "default": false,
+          "description": "Filter out domains without active paid ad pixels.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "name": "extract_ad_pixels",
+    "rapidapi": {
+      "method": "POST",
+      "path": "/scan"
+    }
+  },
+  {
+    "description": "Ultra-fast DNS-only (no HTTP) enterprise SaaS & email stack check via MX, SPF, TXT, and DMARC records (~50-200ms). Detects Google Workspace, Microsoft 365, Stripe, OpenAI Enterprise, Anthropic, Cursor, Slack, Notion, Linear, HubSpot, Klaviyo, DocuSign, Rippling, and Greenhouse even on WAF-protected sites.",
+    "inputSchema": {
+      "properties": {
+        "domain": {
+          "description": "Single domain convenience field (e.g. 'linear.app').",
+          "type": "string"
+        },
+        "domains": {
+          "description": "List of company domains or work emails (1-200).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mustHaveAny": {
+          "description": "Return only domains matching ANY listed SaaS tool (e.g. ['OpenAI', 'Stripe']).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mustNotHave": {
+          "description": "Exclude domains matching ANY listed SaaS tool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "name": "check_enterprise_saas",
     "rapidapi": {
       "method": "POST",
       "path": "/scan"
@@ -89,7 +191,7 @@ async function proxyApifyMcp(payload, token) {
 
 async function callRapidApi(tool, args, key) {
   const cfg = tool.rapidapi;
-  let url = `https://${RAPIDAPI_HOST}${cfg.path}`;
+  let url = `${REST_BASE_URL}${cfg.path}`;
   const headers = {
     "x-rapidapi-key": key,
     "x-rapidapi-host": RAPIDAPI_HOST
