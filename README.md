@@ -63,3 +63,35 @@ Import the ready-to-run workflow (**B2B Lead Technographics, Ad Pixels & DNS Saa
 - [Meta, Google Ads & TikTok Ad Pixel ID Extractor](https://apify.com/spiky_closet/tech-stack-ad-pixel-detector/examples/meta-google-tiktok-ad-pixel-extractor)
 - [Wappalyzer & BuiltWith Bulk Website Tech Stack Lookup](https://apify.com/spiky_closet/tech-stack-ad-pixel-detector/examples/wappalyzer-builtwith-bulk-tech-lookup)
 - [B2B DNS Enterprise SaaS & Mail Stack Verifier](https://apify.com/spiky_closet/tech-stack-ad-pixel-detector/examples/b2b-dns-enterprise-saas-verifier)
+## Live Interactive Top-100 Benchmark (Nov 2026)
+
+Explore our live open dataset of **100 top Shopify DTC & B2B SaaS domains** scanned without headless browsers (`5.97s` total runtime, `0` crashes):
+- **Interactive Web Explorer:** https://yun87457-web.github.io/tech-stack-ad-pixel-mcp/
+- **Open Downloads (MIT):** [`benchmarks/top-100-nov-2026.csv`](./benchmarks/top-100-nov-2026.csv) · [`benchmarks/top-100-nov-2026.json`](./benchmarks/top-100-nov-2026.json)
+- **Key Findings:** `61%` active ad pixels (`48%` GTM containers unpacked statically), **`65%` DNS-verified Anthropic vs `61%` OpenAI**, and `32%` Reddit Pixel adoption outranking TikTok (`21%`).
+
+## Install & Run Locally (Stdio MCP Server — Zero Dependencies)
+
+Run directly in Claude Desktop, Cursor, Windsurf, or Cline using Node.js 18+ (supports either `APIFY_TOKEN` or `RAPIDAPI_KEY`):
+
+```bash
+npx -y github:yun87457-web/tech-stack-ad-pixel-mcp
+```
+
+```json
+{
+  "mcpServers": {
+    "tech-stack-ad-pixel": {
+      "command": "npx",
+      "args": ["-y", "github:yun87457-web/tech-stack-ad-pixel-mcp"],
+      "env": { "RAPIDAPI_KEY": "YOUR_FREE_RAPIDAPI_KEY" }
+    }
+  }
+}
+```
+
+## No-Code Recipes (n8n, Make.com & Clay)
+
+- **n8n Workflow JSON:** [`n8n-template.json`](./n8n-template.json) (and community node scaffold in [`n8n-community-node/`](./n8n-community-node/))
+- **Clay HTTP Enrichment:** [`integrations/clay-http-enrichment.json`](./integrations/clay-http-enrichment.json)
+- **Make.com HTTP Module:** [`integrations/make-http-module.json`](./integrations/make-http-module.json)

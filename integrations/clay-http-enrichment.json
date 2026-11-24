@@ -1,0 +1,24 @@
+{
+  "provider": "StackScope Tech Stack & Ad Pixel API",
+  "method": "POST",
+  "endpoint": "https://website-tech-stack-ad-pixels-and-saas-detector.p.rapidapi.com/scan",
+  "headers": {
+    "Content-Type": "application/json",
+    "x-rapidapi-key": "{{YOUR_RAPIDAPI_KEY}}",
+    "x-rapidapi-host": "website-tech-stack-ad-pixels-and-saas-detector.p.rapidapi.com"
+  },
+  "body": {
+    "domains": [
+      "{{Domain}}"
+    ],
+    "unpackGtm": true,
+    "checkDns": true
+  },
+  "extract_fields": [
+    "hasAdPixels",
+    "adPlatforms",
+    "gtmContainerIds",
+    "verifiedDnsSaaS",
+    "ecommerceAndPayments"
+  ]
+}

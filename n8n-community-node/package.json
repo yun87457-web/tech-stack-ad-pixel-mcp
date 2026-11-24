@@ -1,0 +1,19 @@
+{
+  "name": "n8n-nodes-stackscope-tech-pixels",
+  "version": "1.0.0",
+  "description": "n8n community node & workflow bundle for StackScope \u2014 Tech Stack & Ad Pixel Detector MCP Server",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "mcp",
+    "model-context-protocol",
+    "wappalyzer",
+    "builtwith"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp.git"
+  }
+}

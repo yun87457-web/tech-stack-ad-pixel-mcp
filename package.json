@@ -1,0 +1,33 @@
+{
+  "name": "stackscope-tech-stack-ad-pixel-mcp",
+  "version": "1.1.0",
+  "description": "Installable MCP server for website tech stack, consent-gated GTM ad pixels (Meta, Google Ads, TikTok, LinkedIn), /ads.txt, and 70+ DNS-verified B2B SaaS detection.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "tech-stack-ad-pixel-mcp": "./bin/mcp.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "wappalyzer",
+    "builtwith",
+    "tech-stack",
+    "ad-pixels",
+    "gtm",
+    "dns-saas"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp.git"
+  },
+  "homepage": "https://yun87457-web.github.io/tech-stack-ad-pixel-mcp/"
+}

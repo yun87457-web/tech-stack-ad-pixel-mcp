@@ -1,0 +1,21 @@
+{
+  "name": "StackScope \u2014 Enrich Domain with GTM Ad Pixels & DNS SaaS",
+  "module": "http:ActionSendData",
+  "url": "https://website-tech-stack-ad-pixels-and-saas-detector.p.rapidapi.com/scan",
+  "method": "POST",
+  "headers": [
+    {
+      "name": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "name": "x-rapidapi-key",
+      "value": "{{YOUR_RAPIDAPI_KEY}}"
+    },
+    {
+      "name": "x-rapidapi-host",
+      "value": "website-tech-stack-ad-pixels-and-saas-detector.p.rapidapi.com"
+    }
+  ],
+  "body": "{\"domains\": [\"{{1.domain}}\"], \"unpackGtm\": true, \"checkDns\": true}"
+}
