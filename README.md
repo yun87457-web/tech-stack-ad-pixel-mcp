@@ -1,3 +1,5 @@
+![Cover](./cover.png)
+
 # Website Tech Stack, Ad Pixels & SaaS Detector — REST API & MCP Server
 
 [![Tech Stack & Ad Pixel Detector MCP connector](https://glama.ai/mcp/connectors/io.github.yun87457-web/tech-stack-ad-pixel-detector-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.yun87457-web/tech-stack-ad-pixel-detector-mcp)
