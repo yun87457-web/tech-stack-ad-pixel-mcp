@@ -7,6 +7,9 @@
 
 Detect `180+` web technologies, paid advertising conversion pixels (Google Ads, Meta, LinkedIn, TikTok, Microsoft Advertising), `/ads.txt` seller networks, and `70+` DNS-verified B2B SaaS tools (`MX`, `TXT`, `DMARC`) from any domain.
 
+### Explicit HTML Coverage & CRM Scan Confidence (`v1.2`)
+- **No silent WAF false negatives:** Every scan row now emits `htmlInspected` (`true`/`false`), `scanConfidence` (`high` | `medium` | `none`), `scanConfidenceScore` (`0.00–1.00`), `scanCoverageNote` (`full_http_and_dns` vs `dns_verified_waf_blocked_html`), and `scannedAt` (UTC RFC3339). Downstream CRMs immediately distinguish a clean HTML+DNS scan (`high 0.98`) from a Cloudflare/Akamai `403` DNS-only fallback (`medium 0.72`, `htmlInspected: false`) so `hasAdPixels: false` is never misread when HTML was blocked.
+
 ## Access Channels
 
 - **Apify Store (Batch + Standby + Free Tier):** https://apify.com/spiky_closet/tech-stack-ad-pixel-detector
