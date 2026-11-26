@@ -5,7 +5,8 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "tech-stack-ad-pixel-mcp": "./bin/mcp.mjs"
+    "tech-stack-ad-pixel-mcp": "bin/mcp.mjs",
+    "stackscope-tech-stack-ad-pixel-mcp": "bin/mcp.mjs"
   },
   "files": [
     "bin/",
@@ -27,8 +28,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp.git"
+    "url": "git+https://github.com/yun87457-web/tech-stack-ad-pixel-mcp.git"
   },
   "homepage": "https://yun87457-web.github.io/tech-stack-ad-pixel-mcp/",
   "mcpName": "io.github.yun87457-web/tech-stack-ad-pixel-detector-mcp"
 }
+
