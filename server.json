@@ -4,7 +4,7 @@
   "title": "Website Tech Stack, Ad Pixels & SaaS Detector MCP Server",
   "description": "Browserless Go MCP: 180+ web techs, static GTM ad-pixel IDs (Meta/AW/GA4) & 70+ DNS SaaS checks.",
   "repository": {
-    "url": "https://github.com/yun87457-web/adpulse-mcp-servers",
+    "url": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp",
     "source": "github"
   },
   "version": "1.2.1",
