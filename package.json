@@ -29,5 +29,6 @@
     "type": "git",
     "url": "https://github.com/yun87457-web/tech-stack-ad-pixel-mcp.git"
   },
-  "homepage": "https://yun87457-web.github.io/tech-stack-ad-pixel-mcp/"
+  "homepage": "https://yun87457-web.github.io/tech-stack-ad-pixel-mcp/",
+  "mcpName": "io.github.yun87457-web/tech-stack-ad-pixel-detector-mcp"
 }
